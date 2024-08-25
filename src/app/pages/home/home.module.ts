@@ -19,6 +19,8 @@ import { PickupCallCardComponent } from 'src/app/components/pickup-call-card/pic
   declarations: [
     HomePage,
     PickupCallCardComponent
-  ]
+  ],
+exports: [PickupCallCardComponent]  // Export the component
 })
+
 export class HomePageModule {}

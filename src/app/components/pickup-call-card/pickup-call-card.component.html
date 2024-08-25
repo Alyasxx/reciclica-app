@@ -1,5 +1,5 @@
 <ion-card>
-  <ng-content></ng-content>
+  <ng-content select="[header]"></ng-content>
   <ion-card-content>
     <ion-item lines="nones">
       <ion-icon *ngIf="status == 'hold'" name="hourglass-outline" slot="start" color="warning"></ion-icon>
@@ -24,5 +24,5 @@
     </ion-item>
     <ion-button *ngIf="hasFooter" color="success" fill="clear" size="full">See All</ion-button>
   </ion-card-content>
-  <ng-content></ng-content>
+  <ng-content select="[footer]"></ng-content>
 </ion-card>
