@@ -24,7 +24,7 @@
 
         <ion-label color="danger" *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['required']">Password is mandatory</ion-label>
 
-       <ion-button color="dark" fill="clear" size="full" [disabled]="!form.get('email')?.valid">Forgot Email/Password</ion-button>
+       <ion-button color="dark" fill="clear" size="full" [disabled]="!form.get('email')?.valid" (click)="forgotEmailPassword()" id="recoverPasswordButton">Forgot Email/Password</ion-button>
         <ion-button color="success" size="full" (click)="login()" [disabled]="!form.valid">Login</ion-button>
         <ion-button color="success" fill="clear" size="full" (click)="register()">Register</ion-button>
       </ion-card-content>
