@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, ValidatorFn, Validators } from "@angular/forms";
 
 export class RegisterPageForm {
 
@@ -11,10 +11,10 @@ export class RegisterPageForm {
   }
 
   private createForm() : FormGroup {
-    return this.formBuilder.group({
+    let form = this.formBuilder.group({
       name: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       repeatPassword: [''],
       phone: ['', [Validators.required]],
       address: this.formBuilder.group({
@@ -27,9 +27,24 @@ export class RegisterPageForm {
         city: ['', [Validators.required]]
       })
     });
+
+    form.get('repeatPassword')?.setValidators(matchPasswordAndRepeatPassword(form));
+
+    return form;
   }
 
   getForm() : FormGroup {
     return this.form;
   }
+}
+
+function matchPasswordAndRepeatPassword(form:FormGroup) : ValidatorFn {
+  const password = form.get('password');
+  const repeatPassword = form.get('repeatPassword');
+
+  const validator = () => {
+    return password?.value == repeatPassword?.value ? null : {isntMatching : true}
+  };
+
+  return validator;
 }

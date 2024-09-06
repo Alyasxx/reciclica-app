@@ -44,10 +44,23 @@ describe('RegisterPageForm', () => {
   it('should empty address city be invalid', () => {
     expect(form.get('address')?.get('city')?.valid).toBeFalsy();
   })
-
   it('should invalid email be invalid', () => {
     form.get('email')?.setValue('invalidEmail');
 
-    expect
+    expect(form.get('email')?.valid).toBeFalsy();
+  })
+  it('should password less than 7 characters be invalid', () => {
+    form.get('password')?.setValue('12345');
+
+    expect(form.get('password')?.valid).toBeFalsy();
+  })
+  it('should password password different from repeat password be invalid', () => {
+    form.get('password')?.setValue('anyPassword');
+    form.get('repeatPassword')?.setValue('anotherPassword');
+
+    expect(form.get('repeatPassword')?.valid).toBeFalsy();
+  })
+  it('should form be valid', () => {
+    expect(form.valid).toBeTruthy();
   })
 })
