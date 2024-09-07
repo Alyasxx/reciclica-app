@@ -61,6 +61,19 @@ describe('RegisterPageForm', () => {
     expect(form.get('repeatPassword')?.valid).toBeFalsy();
   })
   it('should form be valid', () => {
+    form.get('name')?.setValue('anyName');
+    form.get('email')?.setValue('any@email.com');
+    form.get('password')?.setValue('anyPassword');
+    form.get('repeatPassword')?.setValue('anyPassword');
+    form.get('phone')?.setValue('anyPhone');
+    form.get('address')?.get('street')?.setValue('any street');
+    form.get('address')?.get('number')?.setValue('any number');
+    form.get('address')?.get('complement')?.setValue('any complement');
+    form.get('address')?.get('neighbhorhood')?.setValue('any neighbhorhood');
+    form.get('address')?.get('zip code')?.setValue('any zip code');
+    form.get('address')?.get('city')?.setValue('any city');
+    form.get('address')?.get('state')?.setValue('any state');
+
     expect(form.valid).toBeTruthy();
   })
 })

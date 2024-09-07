@@ -3,6 +3,8 @@ import { RegisterPage } from './register.page';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterPageModule } from './register.module';
 
 describe('RegisterPage', () => {
   let component: RegisterPage;
@@ -14,7 +16,9 @@ describe('RegisterPage', () => {
       declarations: [ RegisterPage ],
       imports: [
         IonicModule.forRoot(),
-        AppRoutingModule
+        AppRoutingModule,
+        ReactiveFormsModule,
+        RegisterPageModule
       ]
     }).compileComponents();
     fixture = TestBed.createComponent(RegisterPage);
@@ -22,6 +26,12 @@ describe('RegisterPage', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
+
+  it('should create register form on page init', () => {
+    fixture.detectChanges();
+
+    expect(component.registerForm).toBeUndefined();
+  })
 
   it('should go to home page on register', () => {
     spyOn(router, 'navigate');
