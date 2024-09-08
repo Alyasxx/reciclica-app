@@ -10,6 +10,7 @@ describe('RegisterPage', () => {
   let component: RegisterPage;
   let fixture: ComponentFixture<RegisterPage>;
   let router: Router;
+  let page: { querySelector: (arg0: string) => { (): any; new(): any; click: { (): void; new(): any; }; }; };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -24,6 +25,7 @@ describe('RegisterPage', () => {
     fixture = TestBed.createComponent(RegisterPage);
     router = TestBed.get(Router);
     component = fixture.componentInstance;
+    page = fixture.debugElement.nativeElement;
     fixture.detectChanges();
   }));
 
@@ -34,8 +36,30 @@ describe('RegisterPage', () => {
   })
 
   it('should go to home page on register', () => {
+    fixture.detectChanges();
     spyOn(router, 'navigate');
-    component.register();
+
+    component.registerForm.getForm().get('name')?.setValue("anyName");
+    component.registerForm.getForm().get('email')?.setValue("any@email.com");
+    component.registerForm.getForm().get('password')?.setValue("anyPassword");
+    component.registerForm.getForm().get('repeatPassword')?.setValue("anyPassword");
+    component.registerForm.getForm().get('phone')?.setValue("anyPhone");
+    component.registerForm.getForm().get('address')?.get('street')?.setValue("any street");
+    component.registerForm.getForm().get('address')?.get('number')?.setValue("any number");
+    component.registerForm.getForm().get('address')?.get('complement')?.setValue("any complement");
+    component.registerForm.getForm().get('address')?.get('neighborhood')?.setValue("any neighborhood");
+    component.registerForm.getForm().get('address')?.get('zipCode')?.setValue("any zip code");
+    component.registerForm.getForm().get('address')?.get('city')?.setValue("any city");
+    component.registerForm.getForm().get('address')?.get('state')?.setValue("any state");
+
+    page.querySelector('ion-button').click();
     expect(router.navigate).toHaveBeenCalledWith(['home']);
   })
-});
+
+  it('should not be allowed to register with form invalid', () => {
+    fixture.detectChanges();
+    spyOn(router, 'navigate');
+    page.querySelector('ion-button').click();
+    expect(router.navigate).toHaveBeenCalledTimes(0);
+    })
+  })

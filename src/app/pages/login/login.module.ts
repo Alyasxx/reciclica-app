@@ -7,8 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
-import { ErrorMessageComponent } from 'src/app/components/error-message/error-message.component';
-import { RegisterPageModule } from '../register/register.module';
+import { ErrorMessageModule } from 'src/app/components/error-message/error-message.module';
 
 @NgModule({
   imports: [
@@ -17,7 +16,7 @@ import { RegisterPageModule } from '../register/register.module';
     IonicModule,
     LoginPageRoutingModule,
     ReactiveFormsModule,
-    RegisterPageModule
+    ErrorMessageModule
   ],
   declarations: [LoginPage]
 })

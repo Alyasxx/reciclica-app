@@ -18,7 +18,9 @@ import { AngularFireModule } from '@angular/fire/compat';
     AppComponent,
     LoadingComponent
   ],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     ...AppStoreModule,
     StoreDevtoolsModule.instrument({ maxAge: 25 })
