@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="success">
     <ion-buttons slot="start">
-      <ion-back-button title=""></ion-back-button>
+      <ion-back-button defaultHref="login" title=""></ion-back-button>
     </ion-buttons>
     <ion-title>Register</ion-title>
   </ion-toolbar>
@@ -11,50 +11,37 @@
   <form [formGroup]="registerForm.getForm()">
   <ion-card>
     <ion-card-header>
-      <ion-card-title>What do you want to do with recyclable waste?</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-radio-group>
-        <ion-item>
-          <ion-label>I Want to BUY It</ion-label>
-          <ion-radio value="CLIENT" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>I Want to SELL It</ion-label>
-          <ion-radio value="PARTNER" slot="start"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-header>
       <ion-card-title>Contact</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-item>
         <ion-input label="Name" type="text" labelPlacement="floating" formControlName="name" placeholder="Enter Your Name"></ion-input>
       </ion-item>
-      <!-- <app-error-message [field]="registerForm.get('name')" error="required" message="Name is mandatory"></app-error-message> -->
+      <app-error-message [field]="registerForm.getForm().get('name') || undefined" error="required" message="Name is mandatory"></app-error-message>
       <ion-item>
         <ion-input label="Email" type="email" labelPlacement="floating" formControlName="email" placeholder="Enter Email"></ion-input>
       </ion-item>
-      <app-error-message [field]="registerForm.getForm().get('email')?.value" error="required" message="Email is mandatory"></app-error-message>
-       <app-error-message [field]="registerForm.getForm().get('email')?.value" error="email" message="Email is invalid"></app-error-message>
+      <app-error-message [field]="registerForm.getForm().get('email') || undefined" error="required" message="Email is mandatory"></app-error-message>
+      <app-error-message [field]="registerForm.getForm().get('email') || undefined" error="email" message="Email is invalid"></app-error-message>
+
         <ion-item>
         <ion-input label="Password" type="password" labelPlacement="floating" formControlName="password" placeholder="Enter Password"></ion-input>
       </ion-item>
-      <!-- <app-error-message [field]="registerForm.getForm().get('password')" error="required" message="Password is mandatory"></app-error-message>
-        <app-error-message [field]="registerForm.getForm().get('password')" error="minlength" message="Minimum of 6 characters"></app-error-message> -->
+      <app-error-message [field]="registerForm.getForm().get('password') || undefined" error="required" message="Password is mandatory"></app-error-message>
+      <app-error-message [field]="registerForm.getForm().get('password') || undefined" error="minlength" message="Minimum of 6 characters"></app-error-message>
+
       <ion-item>
         <ion-input label="Confirm Password" type="password" labelPlacement="floating" formControlName="repeatPassword"
           placeholder="Enter Confirm Password"></ion-input>
       </ion-item>
-      <!-- <app-error-message [field]="registerForm.getForm().get('repeatPassword')" error="isntMatching" message="Password and Repeat password are different"></app-error-message> -->
+      <app-error-message [field]="registerForm.getForm().get('repeatPassword') || undefined" error="isntMatching" message="Password and Repeat password are different"></app-error-message>
+
       <ion-item>
         <ion-input label="Phone Number" type="tel" labelPlacement="floating" formControlName="phone"
           placeholder="Enter Your Phone Number"></ion-input>
       </ion-item>
-      <!-- <app-error-message [field]="registerForm.getForm().get('phone')" error="required" message="Phone is mandatory"></app-error-message> -->
+      <app-error-message [field]="registerForm.getForm().get('phone') || undefined" error="required" message="Phone is mandatory"></app-error-message>
+
     </ion-card-content>
   </ion-card>
   <ion-card>
@@ -65,35 +52,34 @@
       <ion-item>
         <ion-input label="Address" type="text" labelPlacement="floating" formControlName="street" placeholder="Enter Your Address"></ion-input>
       </ion-item>
-      <!-- <app-error-message [field]="registerForm.getForm().get('address').get('street')" error="required" message="Street is mandatory"></app-error-message> -->
+      <app-error-message [field]="registerForm.getForm().get('address') || undefined" error="required" message="Address is mandatory"></app-error-message>
+
       <ion-item>
         <ion-input label="Number" type="tel" labelPlacement="floating" formControlName="number" placeholder="Enter Your Address's Number"></ion-input>
       </ion-item>
-      <!-- <app-error-message [field]="registerForm.getForm().get('address').get('number')" error="required" message="Number is mandatory"></app-error-message>
-         -->
+      <app-error-message [field]="registerForm.getForm().get('address')?.get('number')  || undefined" error="required" message="Number is mandatory"></app-error-message>
+
       <ion-item>
         <ion-input label="Neighborhood" type="text" labelPlacement="floating" formControlName="neighborhood" placeholder="Enter Your Address Information"></ion-input>
       </ion-item>
-      <!--  <app-error-message [field]="registerForm.getForm().get('address').get('neighborhood')" error="required" message="Neighborhood is mandatory"></app-error-message> -->
+      <app-error-message [field]="registerForm.getForm().get('address')?.get('neighborhood') || undefined" error="required" message="Neighborhood is mandatory"></app-error-message>
+
       <ion-item>
         <ion-input label="Complement" type="text" labelPlacement="floating" formControlName="complement" placeholder="Enter Your Address Complement"></ion-input>
       </ion-item>
-      <!-- <app-error-message [field]="registerForm.getForm().get('address').get('complement')" error="required" message="Complement is mandatory"></app-error-message>
-         -->
+      <app-error-message [field]="registerForm.getForm().get('address')?.get('complement') || undefined" error="required" message="Complement is mandatory"></app-error-message>
       <ion-item>
         <ion-input label="Zip Code" type="tel" labelPlacement="floating" formControlName="zipCode" placeholder="Enter Your Zip Code"></ion-input>
       </ion-item>
-      <!--  <app-error-message [field]="registerForm.getForm().get('address').get('zipCode')" error="required" message="Zip Code is mandatory"></app-error-message> -->
+      <app-error-message [field]="registerForm.getForm().get('address')?.get('zipCode') || undefined" error="required" message="Zip Code is mandatory"></app-error-message>
       <ion-item>
         <ion-input label="State" type="text" labelPlacement="floating" formControlName="state" placeholder="Enter Your State"></ion-input>
       </ion-item>
-      <!-- <app-error-message [field]="registerForm.getForm().get('address').get('state')" error="required" message="State is mandatory"></app-error-message>
-         -->
+      <app-error-message [field]="registerForm.getForm().get('address')?.get('state') || undefined" error="required" message="State is mandatory"></app-error-message>
       <ion-item>
         <ion-input label="City" type="text" labelPlacement="floating" formControlName="city" placeholder="Enter Your City"></ion-input>
       </ion-item>
-      <!-- <app-error-message [field]="registerForm.getForm().get('address').get('city')" error="required" message="City is mandatory"></app-error-message>
-       -->
+      <app-error-message [field]="registerForm.getForm().get('address')?.get('city') || undefined" error="required" message="City is mandatory"></app-error-message>
     </ion-card-content>
   </ion-card>
   <ion-button size="full" color="light" (click)="register()">Register</ion-button>

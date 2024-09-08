@@ -19,8 +19,7 @@ export class LoginPage implements OnInit, OnDestroy {
 
   form!: FormGroup;
   loginStateSubscription: Subscription = new Subscription;
-  constructor(private router: Router, private formBuilder: FormBuilder, private store: Store<AppState>,
-    private toastController: ToastController){ }
+  constructor(private router: Router, private formBuilder: FormBuilder, private store: Store<AppState>, private toastController: ToastController, private navController: NavController){ }
 
   ngOnInit() {
     this.form = new LoginPageForm(this.formBuilder).createForm();
@@ -50,7 +49,7 @@ export class LoginPage implements OnInit, OnDestroy {
   }
   private onIsLoggedIn(loginState: LoginState) {
     if (loginState.isLoggedIn) {
-      this.router.navigate(['home']);
+      this.navController.navigateRoot('home');
     }
   }
   private async onError(loginState: LoginState) {
